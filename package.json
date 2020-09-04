@@ -1,0 +1,24 @@
+{
+  "name": "nodejs-rest-http-restify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./bin/www",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexalikiotis/nodejs-rest-http-restify.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/alexalikiotis/nodejs-rest-http-restify/issues"
+  },
+  "homepage": "https://github.com/alexalikiotis/nodejs-rest-http-restify#readme",
+  "dependencies": {
+    "fastify": "^3.3.0",
+    "fastify-static": "^3.2.0"
+  }
+}
