@@ -4,6 +4,9 @@
   "description": "",
   "main": "./bin/www",
   "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-12",
     "start": "node ."
   },
   "repository": {
@@ -19,6 +22,11 @@
   "homepage": "https://github.com/alexalikiotis/nodejs-rest-http-restify#readme",
   "dependencies": {
     "fastify": "^3.3.0",
-    "fastify-static": "^3.2.0"
+    "fastify-static": "^3.2.0",
+    "pino-pretty": "^4.2.1"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "nodeshift": "^7.1.0"
   }
 }

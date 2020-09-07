@@ -2,20 +2,28 @@
 
 'use strict';
 
-/**
- * Module dependencies.
- */
-const app = require('../app');
+//
+// Module dependencies.
+//
+const build = require('../app');
+
+// creating server instance
+const fastify = build({
+  logger: {
+    level: 'info',
+    prettyPrint: true,
+  },
+});
 
 const DEFAULT_PORT = 8080;
 
 const start = async () => {
   const port = process.env.PORT || DEFAULT_PORT;
   try {
-    await app.listen(port);
-    app.log.info(`server listening on ${app.server.address().port}`);
+    await fastify.listen(port);
+    fastify.log.info(`server listening on ${fastify.server.address().port}`);
   } catch (err) {
-    app.log.error(err);
+    fastify.log.error(err);
     process.exit(1);
   }
 };
