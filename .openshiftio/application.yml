@@ -18,7 +18,7 @@ parameters:
   - name: SOURCE_REPOSITORY_URL
     description: The source URL for the application
     displayName: Source URL
-    value: 'https://github.com/nodeshift-starters/nodejs-rest-http'
+    value: 'https://github.com/alexalikiotis/nodejs-rest-http-fastify'
     required: true
   - name: SOURCE_REPOSITORY_REF
     description: The branch name for the application
@@ -40,7 +40,7 @@ objects:
   - apiVersion: image.openshift.io/v1
     kind: ImageStream
     metadata:
-      name: 'nodejs-rest-http${SUFFIX_NAME}'
+      name: 'nodejs-rest-fastify${SUFFIX_NAME}'
     spec: {}
   - apiVersion: image.openshift.io/v1
     kind: ImageStream
@@ -55,12 +55,12 @@ objects:
   - apiVersion: build.openshift.io/v1
     kind: BuildConfig
     metadata:
-      name: 'nodejs-rest-http${SUFFIX_NAME}'
+      name: 'nodejs-rest-fastify${SUFFIX_NAME}'
     spec:
       output:
         to:
           kind: ImageStreamTag
-          name: 'nodejs-rest-http:${RELEASE_VERSION}'
+          name: 'nodejs-rest-fastify:${RELEASE_VERSION}'
       postCommit: {}
       resources: {}
       source:
@@ -89,28 +89,28 @@ objects:
     metadata:
       labels:
         expose: 'true'
-        project: nodejs-rest-http
+        project: nodejs-rest-fastify
         provider: nodeshift
         version: '${RELEASE_VERSION}'
         app.openshift.io/runtime: nodejs
-      name: 'nodejs-rest-http${SUFFIX_NAME}'
+      name: 'nodejs-rest-fastify${SUFFIX_NAME}'
     spec:
       ports:
         - protocol: TCP
           port: 8080
           targetPort: 8080
       selector:
-        project: nodejs-rest-http
+        project: nodejs-rest-fastify
         provider: nodeshift
       type: ClusterIP
   - apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig
     metadata:
-      name: 'nodejs-rest-http${SUFFIX_NAME}'
+      name: 'nodejs-rest-fastify${SUFFIX_NAME}'
       labels:
-        app: nodejs-rest-http
+        app: nodejs-rest-fastify
         provider: nodeshift
-        project: nodejs-rest-http
+        project: nodejs-rest-fastify
         version: '${RELEASE_VERSION}'
         app.openshift.io/runtime: nodejs
     spec:
@@ -129,8 +129,8 @@ objects:
                   scheme: HTTP
                 initialDelaySeconds: 60
                 periodSeconds: 30
-              image: 'nodejs-rest-http:${RELEASE_VERSION}'
-              name: nodejs-rest-http
+              image: 'nodejs-rest-fastify:${RELEASE_VERSION}'
+              name: nodejs-rest-fastify
               securityContext:
                 privileged: false
               ports:
@@ -143,14 +143,14 @@ objects:
                   memory: 256Mi
         metadata:
           labels:
-            app: nodejs-rest-http
-            project: nodejs-rest-http
+            app: nodejs-rest-fastify
+            project: nodejs-rest-fastify
             provider: nodeshift
             version: '${RELEASE_VERSION}'
       replicas: 1
       selector:
-        app: nodejs-rest-http
-        project: nodejs-rest-http
+        app: nodejs-rest-fastify
+        project: nodejs-rest-fastify
         provider: nodeshift
       triggers:
         - type: ConfigChange
@@ -158,22 +158,22 @@ objects:
           imageChangeParams:
             automatic: true
             containerNames:
-              - nodejs-rest-http
+              - nodejs-rest-fastify
             from:
               kind: ImageStreamTag
-              name: 'nodejs-rest-http${SUFFIX_NAME}:${RELEASE_VERSION}'
+              name: 'nodejs-rest-fastify${SUFFIX_NAME}:${RELEASE_VERSION}'
   - apiVersion: route.openshift.io/v1
     kind: Route
     metadata:
       labels:
-        project: nodejs-rest-http
+        project: nodejs-rest-fastify
         provider: nodeshift
         version: '${RELEASE_VERSION}'
         app.openshift.io/runtime: nodejs
-      name: 'nodejs-rest-http${SUFFIX_NAME}'
+      name: 'nodejs-rest-fastify${SUFFIX_NAME}'
     spec:
       port:
         targetPort: 8080
       to:
         kind: Service
-        name: 'nodejs-rest-http${SUFFIX_NAME}'
+        name: 'nodejs-rest-fastify${SUFFIX_NAME}'
