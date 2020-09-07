@@ -31,7 +31,6 @@
   },
   "devDependencies": {
     "jest": "^26.4.2",
-    "nodeshift": "^7.1.0",
-    "rhoaster": "^0.4.1"
+    "nodeshift": "^7.1.0"
   }
 }
