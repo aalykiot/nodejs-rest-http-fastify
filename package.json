@@ -4,8 +4,9 @@
   "description": "",
   "main": "./bin/www",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest test/*.test.js",
+    "test:integration": "jest test/integration/*.js",
+    "test:integration:undeploy": "nodeshift undeploy",
     "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-12",
     "start": "node ."
   },
@@ -13,13 +14,16 @@
     "type": "git",
     "url": "git+https://github.com/alexalikiotis/nodejs-rest-http-restify.git"
   },
+  "files": [
+    "package.json",
+    "app.js",
+    "public",
+    "bin",
+    "LICENSE"
+  ],
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/alexalikiotis/nodejs-rest-http-restify/issues"
-  },
-  "homepage": "https://github.com/alexalikiotis/nodejs-rest-http-restify#readme",
   "dependencies": {
     "fastify": "^3.3.0",
     "fastify-static": "^3.2.0",
@@ -27,6 +31,8 @@
   },
   "devDependencies": {
     "jest": "^26.4.2",
-    "nodeshift": "^7.1.0"
+    "nodeshift": "^7.1.0",
+    "rhoaster": "^0.4.1",
+    "supertest": "^4.0.2"
   }
 }
