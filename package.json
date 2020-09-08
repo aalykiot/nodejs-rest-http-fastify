@@ -4,11 +4,9 @@
   "description": "",
   "main": "./bin/www",
   "scripts": {
+    "start": "node .",
     "test": "jest test/*.test.js",
-    "test:integration": "jest test/integration/*.js",
-    "test:integration:undeploy": "nodeshift undeploy",
-    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-12",
-    "start": "node ."
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-12"
   },
   "repository": {
     "type": "git",
