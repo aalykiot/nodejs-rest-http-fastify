@@ -1,4 +1,4 @@
-const build = require('../app');
+import build from '../app';
 
 const app = build({
   logger: {
@@ -9,7 +9,7 @@ const app = build({
 
 const start = async () => {
   try {
-    const port = process.env.PORT || 8080;
+    const port = parseInt(process.env.PORT, 10) || 8080;
     await app.listen(port, '0.0.0.0');
   } catch (err) {
     app.log.error(err);

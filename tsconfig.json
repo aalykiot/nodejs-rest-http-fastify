@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "lib": ["es2016"],
+    "allowJs": true,
+    "target": "es2016",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "./dist"
+  },
+  "include": ["./**/*.ts", "public/*"],
+  "exclude": ["node_modules"]
+}
