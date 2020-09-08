@@ -3,6 +3,7 @@ const fastify = require('fastify');
 const fastifyStatic = require('fastify-static');
 
 function build(opts = {}) {
+  // create fastify instance
   const app = fastify(opts);
 
   app.register(fastifyStatic, {
@@ -10,7 +11,7 @@ function build(opts = {}) {
     prefix: '/public/',
   });
 
-  app.get('/', (request, reply) => {
+  app.get('/', async (_request, reply) => {
     return reply.sendFile('index.html');
   });
 
